@@ -1,0 +1,10 @@
+Django==1.11.4
+django-suit==0.2.25
+djangorestframework==3.6.3
+python-telegram-bot==5.2.0
+requests==2.12.3
+transaction==2.0.3
+urllib3==1.19.1
+psycopg2
+uwsgi
+
