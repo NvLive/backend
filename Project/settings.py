@@ -25,7 +25,7 @@ SECRET_KEY = 'n$nlgpi6_-(1lm86xp*m3@n6l_rh2b7t-z@svspdsy_i_62+&&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
