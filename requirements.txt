@@ -5,6 +5,6 @@ python-telegram-bot==5.2.0
 requests==2.12.3
 transaction==2.0.3
 urllib3==1.19.1
-psycopg2
-uwsgi
+#psycopg2
+#uwsgi
 
