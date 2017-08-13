@@ -12,9 +12,16 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='pushtokens',
-            name='show_ids',
+        migrations.CreateModel(
+            name='PushTokens',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('token', models.CharField(max_length=255)),
+            ],
+            options={
+                'verbose_name': 'PushToken',
+                'verbose_name_plural': 'PushTokens',
+            },
         ),
         migrations.AddField(
             model_name='pushtokens',

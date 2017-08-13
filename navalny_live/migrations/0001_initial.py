@@ -36,18 +36,6 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='PushTokens',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('token', models.CharField(max_length=255)),
-                ('show_ids', models.CharField(max_length=80)),
-            ],
-            options={
-                'verbose_name': 'PushToken',
-                'verbose_name_plural': 'PushTokens',
-            },
-        ),
-        migrations.CreateModel(
             name='Show',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
