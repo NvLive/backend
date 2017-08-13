@@ -27,7 +27,7 @@ class ListShowsView(ListAPIView):
         serializer = self.serializer_class(
             instance=instances, context=context, many=True
         )
-        return Response(serializer.data)
+        return Response({"list": serializer.data})
 
 
 class RetrieveShowView(RetrieveAPIView):
@@ -43,7 +43,7 @@ class RetrieveShowView(RetrieveAPIView):
         serializer = self.serializer_class(
             instance=instance, context=context
         )
-        return Response(serializer.data)
+        return Response({"entity": serializer.data})
 
 
 class ListBroadcastsView(ListAPIView):
@@ -73,7 +73,7 @@ class ListBroadcastsView(ListAPIView):
         serializer = self.serializer_class(
             instance=instances, context=context, many=True
         )
-        return Response(serializer.data)
+        return Response({"list": serializer.data})
 
 
 
@@ -88,7 +88,7 @@ class RetrieveBroadcastView(RetrieveAPIView):
         serializer = self.serializer_class(
             instance=instance, context=context
         )
-        return Response(serializer.data)
+        return Response({"entity": serializer.data})
 
 # Push token views
 class PushSubscribe(CreateAPIView):

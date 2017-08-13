@@ -83,6 +83,7 @@ class Broadcast(AbstractDateTimeModel, AbstractPlaceholderURL):
         verbose_name_plural = 'Broadcasts'
 
 
+
 class PushTokens(models.Model):
     token = models.CharField(
         max_length=255

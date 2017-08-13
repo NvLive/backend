@@ -11,3 +11,4 @@ rq-scheduler==0.7.0
 django-rq==0.9.6
 #psycopg2
 #uwsgi
+django-cors-headers==2.1.0
