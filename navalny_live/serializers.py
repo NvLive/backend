@@ -17,7 +17,10 @@ class ShowSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def get_broadcasts(obj):
-        return BroadcastSerializer(obj.broadcasts, many=True).data
+        try:
+            return BroadcastSerializer(obj.broadcasts, many=True).data
+        except Exception:
+            return BroadcastSerializer(obj.broadcasts).data
 
     class Meta:
         model = Show
