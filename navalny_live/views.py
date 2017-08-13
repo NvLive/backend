@@ -55,8 +55,10 @@ class ListBroadcastsView(ListAPIView):
     def get_queryset(self):
         return self.model.objects.all()
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, first=None, last=None):
         instances = self.get_queryset()
+        if first and last:
+            instances = instances[int(first): int(last)]
         context = {'request': self.request}
         serializer = self.serializer_class(
             instance=instances, context=context, many=True

@@ -31,6 +31,13 @@ urlpatterns = [
         CurrentBC.as_view(),
         name='broadcast_current'
     ),
+
+    url(
+        r'^broadcasts/show/([0-9]+)/([0-9]+)/$',
+        ListBroadcastsView.as_view(),
+        name='broadcasts_list'
+    ),
+
     url(
         r'^push_service/', include([
             url(
