@@ -80,3 +80,22 @@ class Broadcast(AbstractDateTimeModel, AbstractPlaceholderURL):
     class Meta:
         verbose_name = 'Broadcast'
         verbose_name_plural = 'Broadcasts'
+
+
+class PushTokens(models.Model):
+    token = models.CharField(
+        max_length=255
+    )
+    shows = models.ManyToManyField(
+        Show,
+        related_name='shows_push_token',
+        related_query_name='shows_push_token_rel',
+        blank=True, null=True
+    )
+
+    def __str__(self):
+        return self.token
+
+    class Meta:
+        verbose_name = 'PushToken'
+        verbose_name_plural = 'PushTokens'

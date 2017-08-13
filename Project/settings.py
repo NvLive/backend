@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'navalny_live',
-    'rest_framework'
+    'rest_framework',
+    'django_rq'
 ]
 
 MIDDLEWARE = [
@@ -89,7 +90,14 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 2,
+        'DEFAULT_TIMEOUT': 360,
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -109,3 +117,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = 'files'
