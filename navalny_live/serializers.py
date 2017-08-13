@@ -6,9 +6,10 @@ class BroadcastSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Broadcast
-        fields = ('id', 'title', 'transcript', 'contents', 'stream_url',
+        fields = ('id', 'title', 'description',
+                  'transcript', 'contents', 'stream_url',
                   'youtube_url', 'is_live', 'is_featured', 'start_date',
-                  'end_date', 'placeholder_image_url',)
+                  'end_date', 'placeholder_image_url', 'shows')
 
 
 class ShowSerializer(serializers.ModelSerializer):

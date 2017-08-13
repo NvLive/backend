@@ -54,7 +54,8 @@ class Broadcast(AbstractDateTimeModel, AbstractPlaceholderURL):
     contents = models.TextField(
         verbose_name='Content'
     )
-    stream_url = models.URLField(
+    stream_url = models.CharField(
+        # URLField wont allow rtmp scheme
         max_length=255,
         verbose_name='Stream URL'
     )
