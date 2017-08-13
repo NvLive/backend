@@ -3,8 +3,11 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-from .models import Show, PushTokens
-from .serializers import ShowSerializer
+from .models import Show, Broadcast, PushTokens
+from .serializers import (
+    ShowSerializer,
+    BroadcastSerializer,
+)
 
 
 class ListShowsView(ListAPIView):
@@ -30,10 +33,56 @@ class ListShowsView(ListAPIView):
 class RetrieveShowView(RetrieveAPIView):
     model = Show
 
-    def get(self, request, *args, **kwargs):
-        instance_pk = kwargs['pk']
-        pass
+    queryset = model.objects.all()
+    serializer_class = ShowSerializer
 
+    def get(self, request, instance_pk, **kwargs):
+        context = {'request': self.request}
+        instance = self.queryset.get(pk=instance_pk)
+        instance.broadcasts = instance.show_broadcast
+        serializer = self.serializer_class(
+            instance=instance, context=context
+        )
+        return Response(serializer.data)
+
+
+class ListBroadcastsView(ListAPIView):
+    model = Broadcast
+    pagination_class = None
+    permission_classes = [AllowAny]
+    serializer_class = BroadcastSerializer
+
+    def get_queryset(self):
+        return self.model.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        instances = self.get_queryset()
+        context = {'request': self.request}
+        serializer = self.serializer_class(
+            instance=instances, context=context, many=True
+        )
+        return Response(serializer.data)
+
+
+class CurrentBC(ListBroadcastsView):
+    def get_queryset(self):
+        return self.model.objects.filter(
+            is_live=True, is_featured=True
+        ).all()
+
+
+class RetrieveBroadcastView(RetrieveAPIView):
+    model = Broadcast
+    queryset = model.objects.all()
+    serializer_class = BroadcastSerializer
+
+    def get(self, request, instance_pk, **kwargs):
+        context = {'request': self.request}
+        instance = self.queryset.get(pk=instance_pk)
+        serializer = self.serializer_class(
+            instance=instance, context=context
+        )
+        return Response(serializer.data)
 
 # Push token views
 class PushSubscribe(CreateAPIView):
