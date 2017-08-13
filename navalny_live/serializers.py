@@ -4,6 +4,8 @@ from .models import Show, Broadcast
 
 class BroadcastSerializer(serializers.ModelSerializer):
 
+    show_id = serializers.ReadOnlyField(source='shows.id')
+
     class Meta:
         model = Broadcast
         fields = ('id', 'title', 'description',
