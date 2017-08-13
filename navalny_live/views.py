@@ -4,6 +4,8 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from .models import Show, Broadcast, PushTokens
+from django.db.models import Q
+
 from .serializers import (
     ShowSerializer,
     BroadcastSerializer,
@@ -64,7 +66,7 @@ class ListBroadcastsView(ListAPIView):
             ).order_by('-start_date')[:int(count)]
         elif self.current:
             instances = instances.filter(
-                is_live=True, is_featured=True
+                Q(is_live=True) | Q(is_featured=True)
             ).all()
         elif show_id and not count:
             # last count
