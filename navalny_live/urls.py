@@ -2,7 +2,6 @@ from django.conf.urls import url, include
 from navalny_live.views import (
     ListShowsView, PushSubscribe, PushUnsubscribe, RetrieveShowView,
     ListBroadcastsView, RetrieveBroadcastView,
-    CurrentBC,
 )
 
 urlpatterns = [
@@ -28,15 +27,21 @@ urlpatterns = [
     ),
     url(
         r'^broadcasts/current/$',
-        CurrentBC.as_view(),
+        ListBroadcastsView.as_view(current=1),
         name='broadcast_current'
     ),
 
     url(
         r'^broadcasts/show/([0-9]+)/([0-9]+)/$',
         ListBroadcastsView.as_view(),
-        name='broadcasts_list'
+        name='broadcasts_show'
     ),
+    url(
+        r'^broadcasts/last/([0-9]+)/$',
+        ListBroadcastsView.as_view(),
+        name='broadcasts_last'
+    ),
+
 
     url(
         r'^push_service/', include([

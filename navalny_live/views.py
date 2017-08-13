@@ -51,26 +51,30 @@ class ListBroadcastsView(ListAPIView):
     pagination_class = None
     permission_classes = [AllowAny]
     serializer_class = BroadcastSerializer
+    current = False
 
     def get_queryset(self):
         return self.model.objects.all()
 
-    def get(self, request, first=None, last=None):
+    def get(self, request, show_id=None, count=None):
         instances = self.get_queryset()
-        if first and last:
-            instances = instances[int(first): int(last)]
+        if show_id and count:
+            instances = instances.filter(
+                shows__id=int(show_id)
+            ).order_by('-start_date')[:int(count)]
+        elif self.current:
+            instances = instances.filter(
+                is_live=True, is_featured=True
+            ).all()
+        elif show_id and not count:
+            # last count
+            instances = instances.order_by('-start_date')[:int(show_id)]
         context = {'request': self.request}
         serializer = self.serializer_class(
             instance=instances, context=context, many=True
         )
         return Response(serializer.data)
 
-
-class CurrentBC(ListBroadcastsView):
-    def get_queryset(self):
-        return self.model.objects.filter(
-            is_live=True, is_featured=True
-        ).all()
 
 
 class RetrieveBroadcastView(RetrieveAPIView):
