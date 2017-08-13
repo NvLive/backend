@@ -32,7 +32,7 @@ urlpatterns = [
     ),
 
     url(
-        r'^broadcasts/show/([0-9]+)/([0-9]+)/$',
+        r'^broadcasts/show/([0-9]+)/last/([0-9]+)/$',
         ListBroadcastsView.as_view(),
         name='broadcasts_show'
     ),
