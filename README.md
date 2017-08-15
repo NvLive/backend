@@ -11,5 +11,9 @@ Backend работает на Django, и Python3(предподчительно 
 Python 3(Почти как, и Swift3 на клиенте), Redis server
 optional? PostgreSQL 9.5+
 
+### Запуск воркеров для задач и отправки пушей
++ $ python manage.py rqworker
++ $ python manage.py rqscheduler
+
 ## TODO
 - [ ] Смотри аЁс ридми 
