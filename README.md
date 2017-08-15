@@ -12,4 +12,4 @@ Python 3(Почти как, и Swift3 на клиенте), Redis server
 optional? PostgreSQL 9.5+
 
 ## TODO
-- [] Смотри аЁс ридми 
+- [ ] Смотри аЁс ридми 
