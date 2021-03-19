@@ -1,7 +1,7 @@
 Django==1.11.4
 django-suit==0.2.25
 git+https://github.com/kdelinx/PyAPNs.git
-djangorestframework==3.6.3
+djangorestframework==3.11.2
 python-telegram-bot==5.2.0
 requests==2.12.3
 transaction==2.0.3
