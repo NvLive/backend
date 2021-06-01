@@ -5,7 +5,7 @@ djangorestframework==3.6.3
 python-telegram-bot==5.2.0
 requests==2.12.3
 transaction==2.0.3
-urllib3==1.19.1
+urllib3==1.26.5
 rq==0.8.1
 rq-scheduler==0.7.0
 django-rq==0.9.6
